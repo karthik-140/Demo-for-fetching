@@ -17,7 +17,7 @@ function App() {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch('https://swapi.dev/api/film/')
+      const response = await fetch('https://swapi.dev/api/films/')
 
       if (!response.ok) {
         throw new Error("Something went wrong...Retrying");
@@ -43,12 +43,24 @@ function App() {
   useEffect(() => {
     if (error) {
       setInterval(() => {
-        fetch('https://swapi.dev/api/film/')
+        fetch('https://swapi.dev/api/films/')
         console.log("useEffect");
       }, 2000)
     }
   }, [error])
 
+
+  let content = <p>No movies found.</p>
+
+  if (movies.length > 0) {
+    content = <MoviesList movies={movies} />
+  }
+  if (isLoading) {
+    content = <p>Loading...</p>
+  }
+  if (error) {
+    content = <p>{error}</p>
+  }
 
   return (
     <React.Fragment>
@@ -57,10 +69,7 @@ function App() {
         <button onClick={cancelFetchHandler}>Cancel</button>
       </section>
       <section>
-        {!isLoading && movies.length > 0 && <MoviesList movies={movies} />}
-        {!isLoading && movies.length === 0 && !error && <p>No movies Found.</p>}
-        {!isLoading && error && <p>{error}</p>}
-        {isLoading && <p>Loading...</p>}
+        {content}
       </section>
     </React.Fragment>
   );
