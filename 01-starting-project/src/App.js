@@ -17,7 +17,7 @@ function App() {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch('https://swapi.dev/api/films/')
+      const response = await fetch('https://swapi.dev/api/film/')
 
       if (!response.ok) {
         throw new Error("Something went wrong...Retrying");
@@ -41,17 +41,21 @@ function App() {
   },[]);
 
   useEffect(() => {
+    console.log(error)
     if (error) {
-      setInterval(() => {
-        fetch('https://swapi.dev/api/films/')
+    const intervalId = setInterval(() => {
+        fetch('https://swapi.dev/api/film/')
         console.log("useEffect");
       }, 2000)
+      return () =>{
+        clearInterval(intervalId);
+      }
     }
   }, [error])
 
-  useEffect(() =>{
-    fetchMoviesHandler();
-  },[fetchMoviesHandler]);
+  // useEffect(() =>{
+  //   fetchMoviesHandler();
+  // },[fetchMoviesHandler]);
 
   let content = <p>No movies found.</p>
 
