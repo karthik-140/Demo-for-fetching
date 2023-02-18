@@ -1,0 +1,43 @@
+.movie-title {
+    text-align: left;
+    font-weight: bolder;
+    margin-bottom: 10px;
+}
+
+.movie-title input {
+    width: 100%;
+    /* margin-bottom: 10px;
+    margin-top: 5px; */
+    margin: 5px 0px 10px 0px;
+    height: 2rem;
+    border-radius: 5px;
+    /* border-color:inherit; */
+}
+
+.movie-text {
+    text-align: left;
+    font-weight: bolder;
+    margin-bottom: 10px;
+}
+
+.movie-text input {
+    width: 100%;
+    /* margin-bottom: 10px; */
+    margin: 5px 0px 10px 0px;
+    height: 5rem;
+    text-align: top;
+    border-radius: 5px;
+}
+
+.movie-date {
+    text-align: left;
+    font-weight: bolder;
+}
+
+.movie-date input {
+    width: 100%;
+    /* margin-bottom: 25px; */
+    margin: 5px 0px 10px 0px;
+    height: 2rem;
+    border-radius: 5px;
+}
