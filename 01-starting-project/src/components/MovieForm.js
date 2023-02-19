@@ -6,14 +6,23 @@ const MovieForm = () => {
     const [enteredText, setEnteredText]= useState('');
     const [enteredDate, setEnteredDate]= useState('');
 
-    const movieSubmitHandler = (event) =>{
+    const movieSubmitHandler = async (event) =>{
         event.preventDefault();
         const newMovieObj = {
             title: event.target.title.value,
-            text: event.target.text.value,
-            date: event.target.date.value,
+            openingText: event.target.text.value,
+            releaseDate: event.target.date.value,
         }
-        console.log(newMovieObj);
+        // console.log(newMovieObj);
+       const response = await fetch('https://react-post-request-62aa3-default-rtdb.firebaseio.com/movies.json',{
+            method: 'POST',
+            body: JSON.stringify(newMovieObj),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        const data = await response.json();
+        console.log(data);
         setEnteredTitle('');
         setEnteredText('');
         setEnteredDate('');
